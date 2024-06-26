@@ -34,84 +34,35 @@ export const EditContact = () => {
             <div className="container">
                 <h1 className="text-center">Edit contact</h1>
                 <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Full Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        placeholder="Full Name"
-                        onChange={(e) => setEdit((prev) => {
-                            return {
-                                ...prev,
-                                name: e.target.value
-                            }
-                        })
-                        }
-                        value={edit.name}
-                    />
+                    <label htmlFor="inputName" className="form-label">Full name</label>
+                    <input required type="text" name="name" className="form-control" id="inputName" 
+                        placeholder="Full name" value={edit.name} onChange={(event) => {setName(event.target.value)}}/>
                 </div>
+
                 <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="email"
-                        placeholder="Enter Email"
-                        onChange={(e) => setEdit((prev) => {
-                            return {
-                                ...prev,
-                                email: e.target.value
-                            }
-                        })}
-                        value={edit.email}
-                    />
+                    <label htmlFor="inputEmail" className="form-label">Email</label>
+                    <input required type="text" className="form-control" id="email"
+                        placeholder="Enter Email"  value={edit.email} onChange={(event) => {setEmail(event.target.value)}}/>
                 </div>
+
                 <div className="mb-3">
-                    <label htmlFor="phone" className="form-label">Phone</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="phone"
-                        placeholder="Enter Phone"
-                        onChange={(e) => setEdit((prev) => {
-                            return {
-                                ...prev,
-                                phone: e.target.value
-                            }
-                        })}
-                        value={edit.phone}
-                    />
+                    <label htmlFor="inputPhone" className="form-label">Phone</label>
+                    <input required type="text" className="form-control" id="phone"
+                        placeholder="Enter Phone" value={edit.phone} onChange={(event) => {setPhone(event.target.value)}}/>
                 </div>
+
                 <div className="mb-3">
-                    <label htmlFor="address" className="form-label">Address</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="address"
-                        placeholder="Enter Address"
-                        onChange={(e) => setEdit((prev) => {
-                            return {
-                                ...prev,
-                                address: e.target.value
-                            }
-                        }
-                        )}
-                        value={edit.address}
-                    />
+                    <label htmlFor="inputAddress" className="form-label">Address</label>
+                    <input required type="text" className="form-control" id="address"
+                        placeholder="Enter Address" value={edit.address} onChange={(event) => {setAddress(event.target.value)}}/>
                 </div>
                 <button className="container btn btn-primary"
                     onClick={(e) => {
                         e.preventDefault()
-                        editedContact(
-                            edit.name,
-                            edit.email,
-                            edit.phone,
-                            edit.address,
-                            params.id
-                        )
-                    }}
-                >save</button>
-                <Link to="/" className="card-link">or get back to contacts</Link>
+                        editedContact(edit.name, edit.email, edit.phone, edit.address, params.id)}}>save</button>
+                <Link to="/">
+                <button className="btn btn-secondary w-100 mt-2">Back to contacts</button>
+                </Link>
             </div>
         </React.Fragment>
     )
