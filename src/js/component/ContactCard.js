@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
-import { Context } from "../store/appContext";
+import { Context } from "../store/appContext.js";
 import { Link } from "react-router-dom";
-import { Contact } from "../views/Contact.jsx";
+import { Contact } from "../views/Contact.js";
 
 export const ContactCard = () => {
     const { actions, store } = useContext(Context)
