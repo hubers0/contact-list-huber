@@ -4,6 +4,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: []
 		},
 		actions: {
+
+			getContacts: async () => {
+				try {
+					const response = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts")
+					if (!response.ok) {
+						console.log("No hay contactos!", response.status)
+					}
+					const data = await response.json()
+					console.log("Esta es la Agenda", data)
+					setStore({ contacts: data.contacts })
+
+				} catch (error) {
+					console.log(error)
+				}
+			},
+
 			findOutMyUser: () => {
 				fetch("https://playground.4geeks.com/contact/agendas/AdriCabrera")
 					.then((response) => response.json())
@@ -18,21 +34,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 								.then(() => getActions().getContacts())
 						} else console.log("El usuario ya existe");
 					})
-			},
-
-			getContacts: async () => {
-				try {
-					const response = await fetch("https://playground.4geeks.com/contact/agendas/AdriCabrera/contacts")
-					if (!response.ok) {
-						console.log("No hay contactos!", response.status)
-					}
-					const data = await response.json()
-					console.log("Esta es la Agenda", data)
-					setStore({ contacts: data.contacts })
-
-				} catch (error) {
-					console.log(error)
-				}
 			},
 
 			newContact: async (name, phone, email, address) => {

@@ -5,7 +5,7 @@ import { AddContact } from "./views/addContact.js";
 import { EditContact } from "./views/editContact.js"
 import injectContext from "./store/appContext";
 import { Footer } from "./component/footer";
-import { ContactCard } from "./component/ContactCard.js";
+import { ContactCard } from "./component/contactCard.js";
 
 const Layout = () => {
 	
