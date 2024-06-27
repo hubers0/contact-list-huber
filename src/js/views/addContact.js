@@ -32,13 +32,13 @@ export const AddContact = () => {
 
                 <div className="mb-3">
                     <label htmlFor="inputEmail" className="form-label">Email</label>
-                    <input required type="text" className="form-control" id="email"
+                    <input required type="email" className="form-control" id="email"
                         placeholder="Enter Email"  value={email} onChange={(event) => {setEmail(event.target.value)}}/>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="inputPhone" className="form-label">Phone</label>
-                    <input required type="text" className="form-control" id="phone"
+                    <input required type="number" className="form-control" id="phone"
                         placeholder="Enter Phone" value={phone} onChange={(event) => {setPhone(event.target.value)}}/>
                 </div>
 
