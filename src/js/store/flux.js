@@ -9,10 +9,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const res = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts")
 					if (!res.ok) {
-						console.log("No hay contactos!", res.status)
+						console.log("Error", res.status)
 					}
 					const data = await res.json()
-					console.log("Esta es la Agenda", data)
+					console.log("Agenda", data)
 					setStore({ contacts: data.contacts })
 
 				} catch (error) {
@@ -25,18 +25,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({
-							"name": name,
-							"phone": phone,
-							"email": email,
-							"address": address
-						})
+						body: JSON.stringify({ "name": name, "phone": phone, "email": email, "address": address })
 					})
 					if (!response.ok) {
-						console.log("No se pudo crear contacto", response.status)
+						console.log("No se creo contacto", response.status)
 					}
 					const data = await response.json()
-					console.log("Contacto creado", data)
+					console.log("nuevo contact", data)
 					getActions().getContacts()
 
 				} catch (error) {
@@ -50,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: "DELETE",
 					})
 					if (!response.ok) {
-						console.log("No se pudo eliminar contacto", response.status)
+						console.log("No se elimino contacto", response.status)
 						return;
 					}
 					console.log("Contacto eliminado")
@@ -73,7 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								.then((response) => response.json())
 								.then(console.log("Usuario Creado"))
 								.then(() => getActions().getContacts())
-						} else console.log("El usuario ya existe");
+						} else console.log("Usuario ya existente");
 					})
 			},
 
@@ -83,15 +78,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts/" + id, {
 						method: "PUT",
 						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({
-							"name": name,
-							"phone": phone,
-							"email": email,
-							"address": address
-						})
+						body: JSON.stringify({ "name": name, "phone": phone, "email": email, "address": address })
 					})
 					if (!response.ok) {
-						console.log("No se puede editar el contacto", response.status)
+						console.log("No se edito el contacto", response.status)
 					}
 					const data = await response.json()
 					console.log(data)

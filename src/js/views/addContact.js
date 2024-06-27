@@ -6,8 +6,6 @@ export const AddContact = () => {
 
     const { actions } = useContext(Context)
 
-    
-
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
@@ -17,6 +15,8 @@ export const AddContact = () => {
     const createContact = async () => {
         await actions.newContact(name, phone, email, address)
         const newAgenda = await actions.getContacts();
+
+        
         Navigate("/", { newAgenda });
     }
 
@@ -49,7 +49,9 @@ export const AddContact = () => {
                 </div>
 
                 <button  type="button" className="btn btn-primary w-100"
-                    onClick={createContact}>save</button>
+                    onClick={createContact}> 
+                    Save
+                 </button>
                 <Link to="/"> 
                 <button className="btn btn-secondary w-100 mt-2">Back to contacts</button>
                 </Link>
