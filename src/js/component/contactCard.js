@@ -24,7 +24,7 @@ export const ContactCard = () => {
             </div>
             <ul className="list-unstyled">
                 {store.contacts.map((contact) => (
-                        <Contact key={contact.id} name={contact.name} address={contact.address} phone={contact.phone} email={contact.email} id={contact.id} onDelete={contact.deleteContact}/>
+                        <Contact key={contact.id} name={contact.name} address={contact.address} phone={contact.phone} email={contact.email} id={contact.id}/>
                     ))}
             </ul>
         </React.Fragment>

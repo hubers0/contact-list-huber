@@ -4,14 +4,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: []
 		},
 		actions: {
-
+			
 			getContacts: async () => {
 				try {
-					const response = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts")
-					if (!response.ok) {
-						console.log("No hay contactos!", response.status)
+					const res = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts")
+					if (!res.ok) {
+						console.log("No hay contactos!", res.status)
 					}
-					const data = await response.json()
+					const data = await res.json()
 					console.log("Esta es la Agenda", data)
 					setStore({ contacts: data.contacts })
 
@@ -20,25 +20,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			findOutMyUser: () => {
-				fetch("https://playground.4geeks.com/contact/agendas/AdriCabrera")
-					.then((response) => response.json())
-					.then(data => {
-						const userExist = data.agendas?.find(user => user.slug === "AdriCabrera")
-						if (!userExist) {
-							fetch("https://playground.4geeks.com/contact/agendas/AdriCabrera",
-								{ method: 'POST' }
-							)
-								.then((response) => response.json())
-								.then(console.log("Usuario Creado"))
-								.then(() => getActions().getContacts())
-						} else console.log("El usuario ya existe");
-					})
-			},
-
 			newContact: async (name, phone, email, address) => {
 				try {
-					const response = await fetch("https://playground.4geeks.com/contact/agendas/AdriCabrera/contacts", {
+					const response = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
@@ -62,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			deleteContact: async (id) => {
 				try {
-					const response = await fetch("https://playground.4geeks.com/contact/agendas/AdriCabrera/contacts/" + id, {
+					const response = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts/" + id, {
 						method: "DELETE",
 					})
 					if (!response.ok) {
@@ -77,9 +61,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			MyUser: async () => {
+				fetch("https://playground.4geeks.com/contact/agendas/huber0018")
+					.then((response) => response.json())
+					.then(data => {
+						const userExist = data.agendas?.find(user => user.slug === "huber0018")
+						if (!userExist) {
+							fetch("https://playground.4geeks.com/contact/agendas/huber0018",
+								{ method: 'POST' }
+							)
+								.then((response) => response.json())
+								.then(console.log("Usuario Creado"))
+								.then(() => getActions().getContacts())
+						} else console.log("El usuario ya existe");
+					})
+			},
+
+
 			editContact: async (name, phone, email, address, id) => {
 				try {
-					const response = await fetch("https://playground.4geeks.com/contact/agendas/AdriCabrera/contacts/" + id, {
+					const response = await fetch("https://playground.4geeks.com/contact/agendas/huber0018/contacts/" + id, {
 						method: "PUT",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
